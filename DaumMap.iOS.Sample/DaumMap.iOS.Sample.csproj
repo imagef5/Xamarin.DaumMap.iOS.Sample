@@ -1,0 +1,207 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{3EF6C266-5F73-409B-85A0-B6F05ADF526E}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DaumMap.iOS.Sample</RootNamespace>
+    <AssemblyName>DaumMap.iOS.Sample</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <IOSDebuggerPort>44199</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>39418</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="UI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="ViewControllers\SampleMapViewController.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="ViewControllers\SampleMarkerViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\PolylineViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\LocationViewController.xib" />
+    <InterfaceDefinition Include="UI\CustomCalloutBalloonView_IlshinBuilding.xib" />
+    <InterfaceDefinition Include="UI\CustomCalloutBalloonView_SeoulForest.xib" />
+    <InterfaceDefinition Include="ViewControllers\CameraUpdateViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\EventViewController.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="ViewControllers\SampleMapViewController.cs" />
+    <Compile Include="ViewControllers\SampleMapViewController.designer.cs">
+      <DependentUpon>SampleMapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SampleMarkerViewController.cs" />
+    <Compile Include="ViewControllers\SampleMarkerViewController.designer.cs">
+      <DependentUpon>SampleMarkerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PolylineViewController.cs" />
+    <Compile Include="ViewControllers\PolylineViewController.designer.cs">
+      <DependentUpon>PolylineViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\LocationViewController.cs" />
+    <Compile Include="ViewControllers\LocationViewController.designer.cs">
+      <DependentUpon>LocationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IlshinBuildingView.cs" />
+    <Compile Include="UI\IlshinBuildingView.designer.cs">
+      <DependentUpon>IlshinBuildingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SeoulForestView.cs" />
+    <Compile Include="UI\SeoulForestView.designer.cs">
+      <DependentUpon>SeoulForestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CameraUpdateViewController.cs" />
+    <Compile Include="ViewControllers\CameraUpdateViewController.designer.cs">
+      <DependentUpon>CameraUpdateViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\EventViewController.cs" />
+    <Compile Include="ViewControllers\EventViewController.designer.cs">
+      <DependentUpon>EventViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\btn_bg.png" />
+    <BundleResource Include="Resources\bubble.png" />
+    <BundleResource Include="Resources\custom_info_bubble.png" />
+    <BundleResource Include="Resources\custom_map_present_direction.png" />
+    <BundleResource Include="Resources\custom_map_present_tracking.png" />
+    <BundleResource Include="Resources\custom_map_present.png" />
+    <BundleResource Include="Resources\custom_poi_marker_end.png" />
+    <BundleResource Include="Resources\custom_poi_marker_left_side.png" />
+    <BundleResource Include="Resources\custom_poi_marker_right_side.png" />
+    <BundleResource Include="Resources\custom_poi_marker_selected.png" />
+    <BundleResource Include="Resources\custom_poi_marker_start.png" />
+    <BundleResource Include="Resources\custom_poi_marker.png" />
+    <BundleResource Include="Resources\ilshin_building.png" />
+    <BundleResource Include="Resources\seoul_forest.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\splash_IOS.png" />
+    <BundleResource Include="Resources\copyright.png" />
+    <BundleResource Include="Resources\daum_copyright.png" />
+    <BundleResource Include="Resources\daum_th_line.png" />
+    <BundleResource Include="Resources\detail_button.png" />
+    <BundleResource Include="Resources\info_box_tail.png" />
+    <BundleResource Include="Resources\info_box.png" />
+    <BundleResource Include="Resources\map_pin_custom.png" />
+    <BundleResource Include="Resources\map_pin_custom%403x.png" />
+    <BundleResource Include="Resources\map_pin_red.png" />
+    <BundleResource Include="Resources\map_pin_red%403x.png" />
+    <BundleResource Include="Resources\map_pin_shadow.png" />
+    <BundleResource Include="Resources\map_pin_shadow%403x.png" />
+    <BundleResource Include="Resources\map_pin.png" />
+    <BundleResource Include="Resources\map_pin%403x.png" />
+    <BundleResource Include="Resources\map_pinup_custom.png" />
+    <BundleResource Include="Resources\map_pinup_custom%403x.png" />
+    <BundleResource Include="Resources\map_pinup.png" />
+    <BundleResource Include="Resources\map_pinup%403x.png" />
+    <BundleResource Include="Resources\map_present_background_update.png" />
+    <BundleResource Include="Resources\map_present_direction.png" />
+    <BundleResource Include="Resources\map_present_tracking.png" />
+    <BundleResource Include="Resources\map_present.png" />
+    <BundleResource Include="Resources\noimage.png" />
+    <BundleResource Include="Resources\noimage256.png" />
+    <BundleResource Include="Resources\point_sprite.png" />
+    <BundleResource Include="Resources\shadow_balloon.png" />
+    <BundleResource Include="Resources\th_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DaumMap.iOS\DaumMap.iOS.csproj">
+      <Project>{FF5B8BF4-09E5-4010-85F9-E73BBA1CCAC2}</Project>
+      <Name>DaumMap.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
