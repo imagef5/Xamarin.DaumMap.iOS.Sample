@@ -80,7 +80,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Camera Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Camera Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch(Exception ex)
             {
@@ -93,7 +93,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
             try
             {
                 var map = (MTMapView)sender;
-                var mapPointGeo = map.MapCenterPoint.MapPointGeo();
+                var mapPointGeo = map.MapCenterPoint.MapPointGeo;
                 eventResultLabel.Text = $"Camera Position : lat:{mapPointGeo.Latitude}, lng:{mapPointGeo.Longitude}, ZoomLevel:{e.ZoomLevel}";
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Drag Started Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Drag Started Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Drag Ended Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Drag Ended Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Single Tapped Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Single Tapped Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch (Exception ex)
             {
@@ -142,7 +142,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Double Tapped Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Double Tapped Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace DaumMap.iOS.Sample.ViewControllers
         {
             try
             {
-                eventResultLabel.Text = $"Long Pressed Position : lat:{e.MapPoint.MapPointGeo().Latitude}, lng:{e.MapPoint.MapPointGeo().Longitude}";
+                eventResultLabel.Text = $"Long Pressed Position : lat:{e.MapPoint.MapPointGeo.Latitude}, lng:{e.MapPoint.MapPointGeo.Longitude}";
             }
             catch (Exception ex)
             {

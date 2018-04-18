@@ -38,6 +38,8 @@
     <Compile Include="DaumMap.linkwith.cs">
       <DependentUpon>DaumMap.a</DependentUpon>
     </Compile>
+    <Compile Include="Messaging.cs" />
+    <Compile Include="Extensions_backup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
