@@ -129,51 +129,30 @@ namespace DaumMap.iOS
 
         // -(MTMapPointGeo)mapPointGeo;
         // -(void)setMapPointGeo:(MTMapPointGeo)mapPointGeo;
-        [Export("mapPointGeo")]
-        [Internal]
-        IntPtr _GetMapPointGeo();
+        //[Export("mapPointGeo")]
+        //[Internal]
         //MTMapPointGeo MapPointGeo { get; set; }
-        //IntPtr MapPointGeo { get; }
 
-        // -(void)setMapPointGeo:(MTMapPointGeo)mapPointGeo;
-        [Export("setMapPointGeo:")]
-        void SetMapPointGeo(MTMapPointGeo mapPointGeo);
 
         // -(MTMapPointPlain)mapPointWCONG;
-        [Export("mapPointWCONG")]
-        [Internal]
-        //MTMapPointPlain MapPointWCONG();
-        IntPtr _MapPointWCONG();
+        //[Export("mapPointWCONG")]
+        //[Internal]
+        //MTMapPointPlain MapPointWCONG { get; set; }
 
-        // -(void)setMapPointWCONG:(MTMapPointPlain)mapPointWCONG;
-        [Export("setMapPointWCONG:")]
-        void SetMapPointWCONG(MTMapPointPlain mapPointWCONG);
+        //// -(MTMapPointPlain)mapPointCONG;
+        //[Export("mapPointCONG")]
+        //[Internal]
+        //MTMapPointPlain MapPointCONG { get; set; }
 
-        // -(MTMapPointPlain)mapPointCONG;
-        [Export("mapPointCONG")]
-        [Internal]
-        //MTMapPointPlain MapPointCONG();
-        IntPtr _MapPointCONG();
+        //// -(MTMapPointPlain)mapPointWTM;
+        //[Export("mapPointWTM")]
+        //[Internal]
+        //MTMapPointPlain MapPointWTM { get; set; }
 
-        // -(void)setMapPointCONG:(MTMapPointPlain)mapPointCONG;
-        [Export("setMapPointCONG:")]
-        void SetMapPointCONG(MTMapPointPlain mapPointCONG);
-
-        // -(MTMapPointPlain)mapPointWTM;
-        [Export("mapPointWTM")]
-        [Internal]
-        //MTMapPointPlain MapPointWTM();
-        IntPtr _MapPointWTM();
-
-        // -(void)setMapPointWTM:(MTMapPointPlain)mapPointWTM;
-        [Export("setMapPointWTM:")]
-        void SetMapPointWTM(MTMapPointPlain mapPointWTM);
-
-        // -(MTMapPointPlain)mapPointScreenLocation;
-        [Export("mapPointScreenLocation")]
-        [Internal]
-        //MTMapPointPlain MapPointScreenLocation();
-        IntPtr _MapPointScreenLocation();
+        //// -(MTMapPointPlain)mapPointScreenLocation;
+        //[Export("mapPointScreenLocation")]
+        //[Internal]
+        //MTMapPointPlain MapPointScreenLocation { get; }
     }
 
     // @interface MTMapBoundsRect : NSObject

@@ -1,116 +1,333 @@
 ﻿using System;
+using Foundation;
+using ObjCRuntime;
 
 namespace DaumMap.iOS
 {
     #region MTMapPoint Class Extensions
     public partial class MTMapPoint
     {
-        /// <summary>
-        /// Get the Maps geo point.
-        /// structure 를 반환하는 unmanaged function 
-        /// http://www.mono-project.com/docs/advanced/pinvoke/#class-and-structure-marshaling
-        /// </summary>
-        /// <returns>The geo point.</returns>
-        /// <seealso cref="Marshal.PtrToStructure(IntPtr, Type)"/>
-        /// <seealso cref="Marshal.PtrToStructure{T}(IntPtr)"/>
-        public MTMapPointGeo MapPointGeo()
+        public MTMapPointGeo MapPointGeo
         {
-            var pointGeo = new MTMapPointGeo();
-            var ptr = IntPtr.Zero;
-            ptr = _GetMapPointGeo();
-
-            if (ptr != IntPtr.Zero)
+            [Export("mapPointGeo")]
+            get
             {
-                unsafe
+                MTMapPointGeo ret;
+                if (IsDirectBinding)
                 {
-                    //정확한 이유는 잘 모르겠으나 
-                    //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 위치값을 얻을 수 있음 
-                    MTMapPointGeo* ptrGeo = (MTMapPointGeo*)(ptr + sizeof(double));
-                    pointGeo = *ptrGeo;
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend(this.Handle, Selector.GetHandle("mapPointGeo"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointGeo"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend(this.Handle, Selector.GetHandle("mapPointGeo"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointGeo"));
+                    }
                 }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                    }
+                }
+                return ret;
             }
 
-            return pointGeo;
+            [Export("setMapPointGeo:")]
+            set
+            {
+                if (IsDirectBinding)
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSend_MTMapPointGeo(this.Handle, Selector.GetHandle("setMapPointGeo:"), value);
+                }
+                else
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSendSuper_MTMapPointGeo(this.SuperHandle, Selector.GetHandle("setMapPointGeo:"), value);
+                }
+            }
         }
 
-        public MTMapPointPlain MapPointWCONG()
+        public MTMapPointPlain MapPointWCONG
         {
-            var pointPlain = new MTMapPointPlain();
-            var ptr = IntPtr.Zero;
-            ptr = _MapPointWCONG();
-
-            if (ptr != IntPtr.Zero)
+            [Export("mapPointWCONG")]
+            get
             {
-                unsafe
+                MTMapPointPlain ret;
+                if (IsDirectBinding)
                 {
-                    //정확한 이유는 잘 모르겠으나 
-                    //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 위치값을 얻을 수 있음 
-                    MTMapPointPlain* ptrPlain = (MTMapPointPlain*)(ptr + sizeof(double));
-                    pointPlain = *ptrPlain;
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointWCONG"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointWCONG"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointWCONG"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointWCONG"));
+                    }
                 }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointWCONG"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointWCONG"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointWCONG"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointWCONG"));
+                    }
+                }
+                return ret;
             }
 
-            return pointPlain;
+            [Export("setMapPointWCONG:")]
+            set
+            {
+                if (IsDirectBinding)
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSend_MTMapPointPlain(this.Handle, Selector.GetHandle("setMapPointWCONG:"), value);
+                }
+                else
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSendSuper_MTMapPointPlain(this.SuperHandle, Selector.GetHandle("setMapPointWCONG:"), value);
+                }
+            }
         }
 
-        public MTMapPointPlain MapPointCONG()
+        public MTMapPointPlain MapPointCONG
         {
-            var pointPlain = new MTMapPointPlain();
-            var ptr = IntPtr.Zero;
-            ptr = _MapPointCONG();
-
-            if (ptr != IntPtr.Zero)
+            [Export("mapPointCONG")]
+            get
             {
-                unsafe
+                MTMapPointPlain ret;
+                if (IsDirectBinding)
                 {
-                    //정확한 이유는 잘 모르겠으나 
-                    //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 위치값을 얻을 수 있음 
-                    MTMapPointPlain* ptrPlain = (MTMapPointPlain*)(ptr + sizeof(double));
-                    pointPlain = *ptrPlain;
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointCONG"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointCONG"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointCONG"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointCONG"));
+                    }
                 }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointCONG"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointCONG"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointCONG"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointCONG"));
+                    }
+                }
+                return ret;
             }
 
-            return pointPlain;
+            [Export("setMapPointCONG:")]
+            set
+            {
+                if (IsDirectBinding)
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSend_MTMapPointPlain(this.Handle, Selector.GetHandle("setMapPointCONG:"), value);
+                }
+                else
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSendSuper_MTMapPointPlain(this.SuperHandle, Selector.GetHandle("setMapPointCONG:"), value);
+                }
+            }
         }
 
-        public MTMapPointPlain MapPointWTM()
+        public MTMapPointPlain MapPointWTM
         {
-            var pointPlain = new MTMapPointPlain();
-            var ptr = IntPtr.Zero;
-            ptr = _MapPointWTM();
-
-            if (ptr != IntPtr.Zero)
+            [Export("mapPointWTM")]
+            get
             {
-                unsafe
+                MTMapPointPlain ret;
+                if (IsDirectBinding)
                 {
-                    //정확한 이유는 잘 모르겠으나 
-                    //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 위치값을 얻을 수 있음 
-                    MTMapPointPlain* ptrPlain = (MTMapPointPlain*)(ptr + sizeof(double));
-                    pointPlain = *ptrPlain;
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointWTM"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointWTM"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointWTM"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointWTM"));
+                    }
                 }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointWTM"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointWTM"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointWTM"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointWTM"));
+                    }
+                }
+                return ret;
             }
 
-            return pointPlain;
+            [Export("setMapPointWTM:")]
+            set
+            {
+                if (IsDirectBinding)
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSend_MTMapPointPlain(this.Handle, Selector.GetHandle("setMapPointWTM:"), value);
+                }
+                else
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSendSuper_MTMapPointPlain(this.SuperHandle, Selector.GetHandle("setMapPointWTM:"), value);
+                }
+            }
         }
 
-        public MTMapPointPlain MapPointScreenLocation()
+        public MTMapPointPlain MapPointScreenLocation
         {
-            var pointPlain = new MTMapPointPlain();
-            var ptr = IntPtr.Zero;
-            ptr = _MapPointScreenLocation();
-
-            if (ptr != IntPtr.Zero)
+            [Export("mapPointScreenLocation")]
+            get
             {
-                unsafe
+                MTMapPointPlain ret;
+                if (IsDirectBinding)
                 {
-                    //정확한 이유는 잘 모르겠으나 
-                    //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 위치값을 얻을 수 있음 
-                    MTMapPointPlain* ptrPlain = (MTMapPointPlain*)(ptr + sizeof(double));
-                    pointPlain = *ptrPlain;
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointScreenLocation"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointScreenLocation"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend(this.Handle, Selector.GetHandle("mapPointScreenLocation"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointScreenLocation"));
+                    }
                 }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointScreenLocation"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointScreenLocation"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointScreenLocation"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointPlain_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointScreenLocation"));
+                    }
+                }
+                return ret;
             }
 
-            return pointPlain;
         }
 
         public static MTMapPointGeo MakeMapPointGeo(double latitude, double longitude)
