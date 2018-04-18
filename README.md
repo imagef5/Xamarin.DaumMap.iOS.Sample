@@ -113,10 +113,10 @@ using ObjCRuntime;
             const string LIBOBJC_DYLIB = "/usr/lib/libobjc.dylib";
 
                 [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
-Attribute 추가 ->[return: MarshalAs(UnmanagedType.Struct)]
+    Attribute 추가 -> [return: MarshalAs(UnmanagedType.Struct)]
                 public extern static global::DaumMap.iOS.MTMapPointGeo MTMapPointGeo_objc_msgSend(IntPtr receiver, IntPtr selector);
                 [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSendSuper")]
-Attribute 추가 ->[return: MarshalAs(UnmanagedType.Struct)]
+    Attribute 추가 -> [return: MarshalAs(UnmanagedType.Struct)]
                 public extern static global::DaumMap.iOS.MTMapPointGeo MTMapPointGeo_objc_msgSendSuper(IntPtr receiver, IntPtr selector);
                 [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend_stret")]
                 public extern static void MTMapPointGeo_objc_msgSend_stret(out global::DaumMap.iOS.MTMapPointGeo retval, IntPtr receiver, IntPtr selector);
