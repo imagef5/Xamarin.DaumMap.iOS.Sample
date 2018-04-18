@@ -91,54 +91,122 @@ using ObjCRuntime;
     [BaseType(typeof(NSObject))]
     public interface MTMapPoint
     {
+        주석 처리
         ...
         // -(MTMapPointGeo)mapPointGeo;
-        [Export("mapPointGeo")]
-        [Internal]
-        IntPtr _GetMapPointGeo(); <- 포인터를 반환하도록 변경
-
-        // Set Method 생성
         // -(void)setMapPointGeo:(MTMapPointGeo)mapPointGeo;
-        [Export("setMapPointGeo:")]
-        void SetMapPointGeo(MTMapPointGeo mapPointGeo);
-
-        or
-
-        //Method 형태가 아닌 setter Property 형태만 생성하도록도 가능
-        [Export("mapPointGeo")]
-        MTMapPointGeo MapPointGeo { set; }
+        //[Export("mapPointGeo")]
+        //[Internal]
+        //MTMapPointGeo MapPointGeo { get; set; }
         
         ...
     }
 
     * [Internal] Attribute 는 Method 가 외부로 노출이 안되도록 함
 
+    Messaging.cs 파일 추가
+
+    namespace DaumMap.iOS
+    {
+        internal class Messaging
+        {
+            const string LIBOBJC_DYLIB = "/usr/lib/libobjc.dylib";
+
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
+Attribute 추가 ->[return: MarshalAs(UnmanagedType.Struct)]
+                public extern static global::DaumMap.iOS.MTMapPointGeo MTMapPointGeo_objc_msgSend(IntPtr receiver, IntPtr selector);
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSendSuper")]
+Attribute 추가 ->[return: MarshalAs(UnmanagedType.Struct)]
+                public extern static global::DaumMap.iOS.MTMapPointGeo MTMapPointGeo_objc_msgSendSuper(IntPtr receiver, IntPtr selector);
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend_stret")]
+                public extern static void MTMapPointGeo_objc_msgSend_stret(out global::DaumMap.iOS.MTMapPointGeo retval, IntPtr receiver, IntPtr selector);
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSendSuper_stret")]
+                public extern static void MTMapPointGeo_objc_msgSendSuper_stret(out global::DaumMap.iOS.MTMapPointGeo retval, IntPtr receiver, IntPtr selector);
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
+                public extern static void void_objc_msgSend_MTMapPointGeo(IntPtr receiver, IntPtr selector, global::DaumMap.iOS.MTMapPointGeo arg1);
+                [DllImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSendSuper")]
+                public extern static void void_objc_msgSendSuper_MTMapPointGeo(IntPtr receiver, IntPtr selector, global::DaumMap.iOS.MTMapPointGeo arg1);
+
+            ...
+        }
+    }
+
+
     Extensions.cs 파일에 아래와 같은 추가 코드 생성
     ...
-    public MTMapPointGeo MapPointGeo()
+    public partial class MTMapPoint
     {
-        var pointGeo = new MTMapPointGeo();
-        var ptr = IntPtr.Zero;
-        ptr = _GetMapPointGeo(); <- 포인터 호출
-
-        if (ptr != IntPtr.Zero)
+        public MTMapPointGeo MapPointGeo
         {
-            unsafe
+            [Export("mapPointGeo")]
+            get
             {
-                //정확한 이유는 잘 모르겠으나 
-                //마샬링이 발생할때 포인터의 위치값에 +8(dobule 크기)offset 해야 제대로된 값을 얻을 수 있음 
-                //seealso : Marshal.PtrToStructure{T}(IntPtr)
-                MTMapPointGeo* ptrGeo = (MTMapPointGeo*)(ptr + sizeof(double));
-                pointGeo = *ptrGeo;
+                MTMapPointGeo ret;
+                if (IsDirectBinding)
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend(this.Handle, Selector.GetHandle("mapPointGeo"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointGeo"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend(this.Handle, Selector.GetHandle("mapPointGeo"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSend_stret(out ret, this.Handle, Selector.GetHandle("mapPointGeo"));
+                    }
+                }
+                else
+                {
+                    if (Runtime.Arch == Arch.DEVICE)
+                    {
+                        if (IntPtr.Size == 8)
+                        {
+                            ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                        }
+                        else
+                        {
+                            global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                        }
+                    }
+                    else if (IntPtr.Size == 8)
+                    {
+                        ret = global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper(this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                    }
+                    else
+                    {
+                        global::DaumMap.iOS.Messaging.MTMapPointGeo_objc_msgSendSuper_stret(out ret, this.SuperHandle, Selector.GetHandle("mapPointGeo"));
+                    }
+                }
+                return ret;
+            }
+
+            [Export("setMapPointGeo:")]
+            set
+            {
+                if (IsDirectBinding)
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSend_MTMapPointGeo(this.Handle, Selector.GetHandle("setMapPointGeo:"), value);
+                }
+                else
+                {
+                    global::DaumMap.iOS.Messaging.void_objc_msgSendSuper_MTMapPointGeo(this.SuperHandle, Selector.GetHandle("setMapPointGeo:"), value);
+                }
             }
         }
-
-        return pointGeo;
+        ...
     }
-    ...
 
     실제 코드 호출시
-    var mapPointGeo = mapView.MapCenterPoint.MapPointGeo();
+    var mapPointGeo = mapView.MapCenterPoint.MapPointGeo;
   ```
 
  7. 경우에 따라 추가코드 생성 (예 : Extension.cs)
